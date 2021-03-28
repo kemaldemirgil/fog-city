@@ -24,7 +24,11 @@ This weather dashboard was created to display the current weather conditions and
 
 ### Webpage:
 https://kemaldemirgil.github.io/weather-dashboard/
-![work-day-schedular-ss](images/ss.png)
+![weather-dashboard-ss](images/ss.png)
+
+### Fetched Data:
+##### Current weather data & one call API
+![weather-dashboard](images/wd1.PNG)
 
 ### License:
 
