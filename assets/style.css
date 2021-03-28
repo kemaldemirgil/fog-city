@@ -9,15 +9,22 @@ body {
 
 .card {
     background-color: #a9ecfd;
+    box-shadow: 2px 2px 20px #a7d6e2;
 }
 
 .list-group-item {
     background-color: #cef3fc;
     margin-top: 1%;
+    box-shadow: 2px 2px 20px #a7d6e2;
+
 }
 
 .jumbotron {
     background-image: url(../images/weather.png);
+}
+
+.jumbotron h1 {
+    text-shadow: 4px 4px 8px #345f69;
 }
 
 small {
