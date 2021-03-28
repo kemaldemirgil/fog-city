@@ -42,7 +42,7 @@ function getWeather() {
                 return;
             });
         } else {
-            alert("error");
+            alert("City Not Found...");
         }
     });
 };
@@ -61,14 +61,15 @@ function getWeatherForecast() {
                 oneCallData = (JSON.parse(localStorage.getItem("oneCallData")));
                 // console.log(fetchedData);
                 // console.log(oneCallData); 
-                displayIcon();
+                
                 displayData();
                 displayDate_Time();
+                displayIcon();
                 addCity();
                 return;
             });
         } else {
-            alert("error");
+            alert("Error");
         }
     });
 };
@@ -221,7 +222,7 @@ function addCity() {
         li.appendChild(button);
         buttonOptions.appendChild(li);
     } else {
-        alert("else");
+        return;
     }
 }
 
