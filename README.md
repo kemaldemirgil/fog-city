@@ -20,7 +20,7 @@ This weather dashboard was created to display the current weather conditions and
     * Humidity
 
 ### Improvements:
->There is actually a lot more information like the *day - night* time & temperature, current weather description that could be added besides the current ones that are being displayed. The following is not a bad example of a `weather forecast` however, it's not the greatest one as well but, for now it should do the work.
+>There is actually a lot more information like the *day - night* time & temperature, current weather description that could be added besides the current ones that are being displayed. Unfortunately, the website isn't responsive but, it can be fixed eventually. The following is not a bad example of a `weather forecast` however, it's not the greatest one as well but, for now it should do the work.
 
 ### Webpage:
 https://kemaldemirgil.github.io/weather-dashboard/
