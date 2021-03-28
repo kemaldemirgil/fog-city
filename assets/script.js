@@ -1,3 +1,6 @@
+// start
+
+// init
 let city_Date = document.getElementById("city-date");
 let currentTemp = document.getElementById("current-temp");
 let currentHumidity = document.getElementById("current-humidity");
@@ -10,12 +13,11 @@ let buttonOptions = document.getElementById("button-options");
 let search = document.getElementById("search");
 let buttons = document.getElementsByTagName("li");
 let capCity;
-
 var fetchedData;
 var oneCallData;
 var listArray = [];
 
-
+// displays current date & time
 function displayDate_Time() {
     var theCalledObj = Object.values(JSON.parse(localStorage.getItem("oneCallData")));
     var cards = theCalledObj[7];
@@ -28,6 +30,7 @@ function displayDate_Time() {
     forecastDate();
 }
 
+// gets location coordinates based on city name
 function getWeather() {
     var city = enteredCity.value;
     capCity = city[0].toUpperCase() + city.slice(1);
@@ -47,13 +50,12 @@ function getWeather() {
     });
 };
 
-
+// gets one-call api using location coordinates
 function getWeatherForecast() {
     var coords = Object.values(fetchedData[0]);
     var lon = coords[0];
     var lat = coords[1];
     var apiURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&appid=d7d5dab732ecba57b1f82869e14b868c';
-
     fetch(apiURL).then(function (response) {
         if (response.ok){
             response.json().then(function (data) {
@@ -61,7 +63,6 @@ function getWeatherForecast() {
                 oneCallData = (JSON.parse(localStorage.getItem("oneCallData")));
                 // console.log(fetchedData);
                 // console.log(oneCallData); 
-                
                 displayData();
                 displayDate_Time();
                 displayIcon();
@@ -74,6 +75,7 @@ function getWeatherForecast() {
     });
 };
 
+// displays current weather icon
 function displayIcon() {
     var theObj = Object.values(JSON.parse(localStorage.getItem("oneCallData")));
     var icons1 = theObj[7];
@@ -84,6 +86,7 @@ function displayIcon() {
     city_Date.append(img);
 }
 
+// displays current weather
 function displayData() {
     var theCalledObj = Object.values(JSON.parse(localStorage.getItem("oneCallData")));
     var theFetchedObj = Object.values(JSON.parse(localStorage.getItem("fetchedData")));
@@ -108,6 +111,7 @@ function displayData() {
     currentWindSpeed.innerHTML = "Wind Speed: " + wind + " km/h";
 }
 
+// displays 5-day forecast
 function forecastDate() {
     /////////
     var theCalledObj = Object.values(JSON.parse(localStorage.getItem("oneCallData")));
@@ -205,6 +209,7 @@ function forecastDate() {
     document.getElementById("card-body-5-h5").append(img4);
 }
 
+// adds entered city to list
 function addCity() {
     var city = enteredCity.value;
     x = city[0].toUpperCase() + city.slice(1);
@@ -226,7 +231,7 @@ function addCity() {
     }
 }
 
-
+// list item init
 function onClicked(event) {
     var city = enteredCity.value;
     var z = city[0].toUpperCase() + city.slice(1);
@@ -243,7 +248,10 @@ function onClicked(event) {
     // console.log(listArray);
 }
 
+// sets current value to last city value, Ottawa by default
 getWeather();
 
-
+// get city
 searchButton.addEventListener("click", getWeather);
+
+// end
