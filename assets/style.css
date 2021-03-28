@@ -1,13 +1,12 @@
 body {
     background-image: url(../images/weather.png);
 }
+
 #current-UV {
     display: inline-block;
-    /* background-color: #ee6351; */
     border-radius: 6px;
-    /* padding: 0.5%;
-    padding-left: 0%; */
 }
+
 .card {
     background-color: #a9ecfd;
 }
@@ -20,6 +19,7 @@ body {
 .jumbotron {
     background-image: url(../images/weather.png);
 }
+
 small {
     display: flex;
     text-align: center;
