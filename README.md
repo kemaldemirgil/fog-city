@@ -2,7 +2,7 @@
 # Weather Dashboard App
 
 ### About:
-This weather dashboard was created to display the current weather conditions and the upcoming weather forecast of five days. Since, there is the time difference between different cities around the world, the dates are adjusted accordingly. I've used the `Open Weather` API to access over 200,000 different city weather information.
+This weather dashboard was created to display the current weather conditions and the upcoming weather forecast of five days. Since, there is the time difference between different cities around the world, the dates are adjusted accordingly. The default city shown is currently `Ottawa` but it could be changed. During this application, I've used the `Open Weather` API to access over 200,000 different city weather information.
 
 ### Usage:
 * Enter a city name,
