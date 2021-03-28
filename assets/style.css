@@ -34,3 +34,13 @@ small {
     margin-top: 15%;
     color: #359db8;
 }
+/* 
+#forecastDiv {
+    display: flex;
+}
+
+@media only screen and (max-width: 1000px) {
+    #forecastDiv {
+        flex-direction: column;
+    }
+} */

@@ -67,6 +67,14 @@ function getWeatherForecast() {
                 displayDate_Time();
                 displayIcon();
                 addCity();
+                // for (var i = 1; i < 6; i++) {
+                //     var card = $("<div>").addClass("card m-1");
+                //     var cardBody = $("<div>").addClass("card-body");
+                //     var cardTitle = $("<h4>").addClass("card-title").text(moment.unix(data.daily[i].dt).format("dddd, MMMM Do"));
+                //     var cardText = $("<p>").addClass("card-text").text("Temp: " + data.daily[i].temp.day);
+                //     var image = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png");
+                //     $("#forecastDiv").append(card.append(cardBody.append(cardTitle.append(image), cardText)));
+                // }
                 return;
             });
         } else {
