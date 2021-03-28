@@ -25,7 +25,7 @@ function displayDate_Time() {
     var day = date.getDate();
     var month = date.getMonth() + 1;
     var year = date.getFullYear();
-    let printedDate = "(" + day + "/" + month + "/" + year + ")";
+    let printedDate = " (" + day + "/" + month + "/" + year + ")";
     city_Date.innerHTML = capCity + printedDate;
     forecastDate();
 }
