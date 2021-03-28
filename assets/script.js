@@ -16,11 +16,6 @@ var oneCallData;
 var listArray = [];
 
 
-function capitalizedCity() {
-    var city = enteredCity.value;
-    capCity = city[0].toUpperCase() + city.slice(1);
-}
-
 function displayDate_Time() {
     var theCalledObj = Object.values(JSON.parse(localStorage.getItem("oneCallData")));
     var cards = theCalledObj[7];
@@ -30,7 +25,7 @@ function displayDate_Time() {
     var year = date.getFullYear();
     let printedDate = "(" + day + "/" + month + "/" + year + ")";
     city_Date.innerHTML = capCity + printedDate;
-    forecastDate()
+    forecastDate();
 }
 
 function getWeather() {
@@ -44,7 +39,6 @@ function getWeather() {
                 fetchedData = Object.values(JSON.parse(localStorage.getItem('fetchedData')));
                 // console.log(fetchedData);                 
                 getWeatherForecast();
-
                 return;
             });
         } else {
@@ -65,10 +59,12 @@ function getWeatherForecast() {
             response.json().then(function (data) {
                 localStorage.setItem('oneCallData', JSON.stringify(data));
                 oneCallData = (JSON.parse(localStorage.getItem("oneCallData")));
+                // console.log(fetchedData);
                 // console.log(oneCallData); 
                 displayIcon();
                 displayData();
                 displayDate_Time();
+                addCity();
                 return;
             });
         } else {
@@ -92,7 +88,14 @@ function displayData() {
     var theFetchedObj = Object.values(JSON.parse(localStorage.getItem("fetchedData")));
     //current uv
     var uv = theCalledObj[4].uvi;
-    currentUV.innerHTML = "UV index: " + uv;
+    if (uv <= 2) {
+        currentUV.setAttribute("style", "background-color: #7ed16a; padding: 0.5%;")
+    } else if (uv <= 6) {
+        currentUV.setAttribute("style", "background-color: #e0d85d; padding: 0.5%;")
+    } else if (uv > 6) {
+        currentUV.setAttribute("style", "background-color: #ee6351; padding: 0.5%;")
+    }
+    currentUV.innerHTML = "UV Index: " + uv;
     //current temp
     var temp = parseInt(theFetchedObj[3].temp - 273.15);
     currentTemp.innerHTML = "Temperature: " + temp + "°C";
@@ -101,7 +104,7 @@ function displayData() {
     currentHumidity.innerHTML = "Humidity: " + humid + "%";
     //current wind
     var wind = parseInt(theFetchedObj[5].speed * 3.6);
-    currentWindSpeed.innerHTML = "Wind speed: " + wind + " km/h";
+    currentWindSpeed.innerHTML = "Wind Speed: " + wind + " km/h";
 }
 
 function forecastDate() {
@@ -202,42 +205,44 @@ function forecastDate() {
 }
 
 function addCity() {
-    if (listArray.includes(enteredCity.value)) {
-        console.log(listArray);
-        return;
-    }
     var city = enteredCity.value;
     x = city[0].toUpperCase() + city.slice(1);
-    listArray.push(x);
-    var li = document.createElement("li");
-    li.setAttribute("style", "min-width: 8rem;");
-    var button = document.createElement("button");
-    button.setAttribute("class", "list-group-item list-group-item-action btn-block");
-    button.setAttribute("onclick", "onClicked(event)");
-    button.textContent = x;
-    li.appendChild(button);
-    buttonOptions.appendChild(li);
+    if (listArray.includes(x)) {
+        // console.log(listArray);
+        return;
+    } else if (!listArray.includes(x)) {
+        listArray.push(x);
+        var li = document.createElement("li");
+        li.setAttribute("style", "min-width: 8rem;");
+        var button = document.createElement("button");
+        button.setAttribute("class", "list-group-item list-group-item-action btn-block");
+        button.setAttribute("onclick", "onClicked(event)");
+        button.textContent = x;
+        li.appendChild(button);
+        buttonOptions.appendChild(li);
+    } else {
+        alert("else");
+    }
 }
 
 
 function onClicked(event) {
-    if (listArray.includes(enteredCity.value)) {
+    var city = enteredCity.value;
+    var z = city[0].toUpperCase() + city.slice(1);
+    if (listArray.includes(z)) {
         var x = event.target;
         enteredCity.value = x.innerHTML;
         getWeather();
-        
-        console.log(listArray);
+        // console.log(listArray);
         return;
     } else if (!listArray.includes(enteredCity.value)) {
         listArray.push(enteredCity.value);
-        console.log("city added");
+        // console.log("city added");
     }
-    console.log(listArray);
-    // enteredCity.value = event.textContent;
-    // getWeather();
-
+    // console.log(listArray);
 }
 
+getWeather();
 
-searchButton.addEventListener("click", addCity);
+
 searchButton.addEventListener("click", getWeather);
