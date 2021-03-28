@@ -6,10 +6,14 @@ let currentUV = document.getElementById("current-UV");
 let enteredCity = document.getElementById("entered-city");
 let searchButton = document.getElementById("search-button");
 let currentIcon = document.getElementById("current-icon");
+let buttonOptions = document.getElementById("button-options");
+let search = document.getElementById("search");
+let buttons = document.getElementsByTagName("li");
 let capCity;
 
 var fetchedData;
 var oneCallData;
+var listArray = [];
 
 
 function capitalizedCity() {
@@ -37,10 +41,10 @@ function getWeather() {
         if (response.ok){
             response.json().then(function (data) {
                 localStorage.setItem('fetchedData', JSON.stringify(data));
-                fetchedData = Object.values(JSON.parse(localStorage.getItem('fetchedData')));                   
+                fetchedData = Object.values(JSON.parse(localStorage.getItem('fetchedData')));
+                // console.log(fetchedData);                 
                 getWeatherForecast();
-                displayData();
-                displayDate_Time();
+
                 return;
             });
         } else {
@@ -61,7 +65,10 @@ function getWeatherForecast() {
             response.json().then(function (data) {
                 localStorage.setItem('oneCallData', JSON.stringify(data));
                 oneCallData = (JSON.parse(localStorage.getItem("oneCallData")));
+                // console.log(oneCallData); 
                 displayIcon();
+                displayData();
+                displayDate_Time();
                 return;
             });
         } else {
@@ -194,4 +201,43 @@ function forecastDate() {
     document.getElementById("card-body-5-h5").append(img4);
 }
 
+function addCity() {
+    if (listArray.includes(enteredCity.value)) {
+        console.log(listArray);
+        return;
+    }
+    var city = enteredCity.value;
+    x = city[0].toUpperCase() + city.slice(1);
+    listArray.push(x);
+    var li = document.createElement("li");
+    li.setAttribute("style", "min-width: 8rem;");
+    var button = document.createElement("button");
+    button.setAttribute("class", "list-group-item list-group-item-action btn-block");
+    button.setAttribute("onclick", "onClicked(event)");
+    button.textContent = x;
+    li.appendChild(button);
+    buttonOptions.appendChild(li);
+}
+
+
+function onClicked(event) {
+    if (listArray.includes(enteredCity.value)) {
+        var x = event.target;
+        enteredCity.value = x.innerHTML;
+        getWeather();
+        
+        console.log(listArray);
+        return;
+    } else if (!listArray.includes(enteredCity.value)) {
+        listArray.push(enteredCity.value);
+        console.log("city added");
+    }
+    console.log(listArray);
+    // enteredCity.value = event.textContent;
+    // getWeather();
+
+}
+
+
+searchButton.addEventListener("click", addCity);
 searchButton.addEventListener("click", getWeather);
