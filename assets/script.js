@@ -34,7 +34,7 @@ function displayDate_Time() {
 function getWeather() {
     var city = enteredCity.value;
     capCity = city[0].toUpperCase() + city.slice(1);
-    var apiURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + capCity + '&appid=d7d5dab732ecba57b1f82869e14b868c';
+    var apiURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + capCity + '&appid=0c5ac1749abd86fb4ddd21370c0bff5d';
     fetch(apiURL).then(function (response) {
         if (response.ok){
             response.json().then(function (data) {
@@ -55,7 +55,7 @@ function getWeatherForecast() {
     var coords = Object.values(fetchedData[0]);
     var lon = coords[0];
     var lat = coords[1];
-    var apiURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&appid=d7d5dab732ecba57b1f82869e14b868c';
+    var apiURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&appid=0c5ac1749abd86fb4ddd21370c0bff5d';
     fetch(apiURL).then(function (response) {
         if (response.ok){
             response.json().then(function (data) {
